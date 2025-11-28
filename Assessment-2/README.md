@@ -63,35 +63,35 @@ A detailed explanation with evidence is included in the full PDF report. Below i
 
 1. Broken Authentication (High)
 
-Credentials were processed via URL parameters instead of secure POST bodies.
+   Credentials were processed via URL parameters instead of secure POST bodies.
 
-Risk: Credentials exposed in logs, caches, browser history.
+   Risk: Credentials exposed in logs, caches, browser history.
 
 2. Sensitive Data Exposure (High)
 
-API response returned email, token, and other sensitive fields in plaintext.
+   API response returned email, token, and other sensitive fields in plaintext.
 
-Risk: User impersonation.
+   Risk: User impersonation.
 
 3. Weak Hashing - MD5 (Critical)
 
-Passwords hashed using MD5, which is easily reversible.
+   Passwords hashed using MD5, which is easily reversible.
 
-Risk: Password cracking & account compromise.
+   Risk: Password cracking & account compromise.
 
 4. IDOR – Account Switching (High)
 
-User identity was changeable by altering request parameters.
+   User identity was changeable by altering request parameters.
 
-Risk: Full account takeover.
+   Risk: Full account takeover.
 
 5. Broken Link Exposure (Medium)
 
-External link scanning identified unused/legacy links (added for learning purposes).
+   External link scanning identified unused/legacy links (added for learning purposes).
 
 6. Improper Error Handling (Medium)
 
-API revealed internal behaviour using verbose error messages such as "Method Not Allowed".
+   API revealed internal behaviour using verbose error messages such as "Method Not Allowed".
 
 📈 Severity Ratings
 
