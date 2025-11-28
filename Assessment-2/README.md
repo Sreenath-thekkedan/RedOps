@@ -1,6 +1,7 @@
 API Security Assessment -Summary Report
 
 Assessment: Account Takeover | Weak Hashing | IDOR | Data Exposure
+
 Author: Sreenath Thekkedan
 
 Full report included in this folder 
@@ -136,6 +137,7 @@ Remove unused or broken links
 📣 Author
 
 Sreenath Thekkedan
+
 Cybersecurity Analyst | Security Researcher
 
 
