@@ -36,109 +36,109 @@ No backend code or infrastructure testing was performed.
 
    Browser history
 
-  Server logs
+   Server logs
 
-  Referrer headers
+   Referrer headers
 
-  Network monitoring
+   Network monitoring
 
-  Secure design: Use POST + TLS for credential exchange.
+   Secure design: Use POST + TLS for credential exchange.
 
 2. Server Version Disclosure - Information Leakage
 
-  The server returned Apache/2.4.18 (Ubuntu) in the response headers.
-  This reveals:
+   The server returned Apache/2.4.18 (Ubuntu) in the response headers.
+   This reveals:
 
-  OS version
+    OS version
 
-  Web server version
+    Web server version
 
-  Known CVEs
+    Known CVEs
 
-  This should be suppressed.
+    This should be suppressed.
 
 3. Sensitive Data Exposure in API Response
 
-  The API returned:
+    The API returned:
 
-  Username
+    Username
 
-  Email ID
+    Email ID
 
-  Authentication Token
+    Authentication Token
 
-  This increases risk of account takeover if intercepted.
+    This increases risk of account takeover if intercepted.
 
 4. Missing Essential Security Headers
 
-  The API lacked:
+    The API lacked:
 
-  Content Security Policy (CSP)
+    Content Security Policy (CSP)
 
-  HTTP Strict Transport Security (HSTS)
+    HTTP Strict Transport Security (HSTS)
 
-  X-Frame-Options
+     X-Frame-Options
 
-  X-Content-Type-Options
+     X-Content-Type-Options
 
-  This increases risk of:
+    This increases risk of:
 
-  XSS
+      XSS
 
-  Clickjacking
+      Clickjacking
 
-  MITM attacks
+      MITM attacks
 
-  Token leakage
+      Token leakage
 
 5. Username Enumeration
 
-  Different error messages are shown for invalid usernames vs wrong passwords.
-  This behaviour can help attackers identify valid accounts.
+     Different error messages are shown for invalid usernames vs wrong passwords.
+     This behaviour can help attackers identify valid accounts.
 
 6. No Rate Limiting - Brute Force Exposure
 
-  Burp Suite Intruder demonstrated unlimited login attempts.
-  Correct characters were revealed based on:
+     Burp Suite Intruder demonstrated unlimited login attempts.
+     Correct characters were revealed based on:
 
-  Response size differences
+     Response size differences
 
-Status code changes
+     Status code changes
 
-  This enables brute-force attacks.
+    This enables brute-force attacks.
 
 🛠️ Tools Used
 
-  Postman
+     Postman
 
-  Burp Suite Intruder
+     Burp Suite Intruder
 
-  Browser response inspector
+     Browser response inspector
 
-  Manual endpoint tampering
+     Manual endpoint tampering
 
 📘 Full Documentation
 
-  📄 API Security Testing - Missing Security Headers & Token Exposure.pdf
+     📄 API Security Testing - Missing Security Headers & Token Exposure.pdf
 
 🔧 Recommendations (High-Level)
 
-   Enforce POST over GET for authentication
+      Enforce POST over GET for authentication
 
-   Remove server version disclosures
+      Remove server version disclosures
 
-   Stop returning sensitive data in plaintext
+      Stop returning sensitive data in plaintext
 
-   Add CSP, HSTS, and other headers
+      Add CSP, HSTS, and other headers
 
-   Use uniform error messages
+      Use uniform error messages
 
-   Add rate limiting & lockout policies
+      Add rate limiting & lockout policies
 
-   Implement monitoring for login abuse
+      Implement monitoring for login abuse
 
 👤 Author
 
-  Sreenath Thekkedan
+     Sreenath Thekkedan
 
-  Cybersecurity Analyst | Security Researcher
+     Cybersecurity Analyst | Security Researcher
