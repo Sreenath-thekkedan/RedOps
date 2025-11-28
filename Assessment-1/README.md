@@ -38,146 +38,146 @@ No backend code or infrastructure testing was performed.
 
   1. Insecure Authentication Method - Credentials in URL
    
-The API accepted login credentials using a GET request, exposing username & password in the URL.
- As explained on page 1, this exposes sensitive data through:
+    The API accepted login credentials using a GET request, exposing username & password in the URL.
+    As explained on page 1, this exposes sensitive data through:
 
-Browser history
-
-
-Server logs
+    Browser history
 
 
-Referrer headers
+    Server logs
 
 
-Network monitoring
+    Referrer headers
 
 
-Secure design: use POST + TLS for credential exchange.
+    Network monitoring
+
+
+    Secure design: use POST + TLS for credential exchange.
 
 2. Server Version Disclosure - Information Leakage
    
-The server returned Apache/2.4.18 (Ubuntu) in the response headers (page 2).
- This enables attackers to identify:
+   The server returned Apache/2.4.18 (Ubuntu) in the response headers (page 2).
+   This enables attackers to identify:
 
-OS version
-
-
-Web server version
+   OS version
 
 
-Associated CVEs for targeted exploits
+   Web server version
 
 
-This should be suppressed wherever possible.
+   Associated CVEs for targeted exploits
+
+
+   This should be suppressed wherever possible.
 
 3. Sensitive Data Exposure in API Response
    
-The API returned:
+   The API returned:
 
-Username
-
-
+   Username
 
 
-Email ID
 
 
-Authentication Token
+   Email ID
 
 
-As shown on page 3, this is a major exposure risk and may enable account takeover if intercepted or replayed.
+   Authentication Token
+
+
+   As shown on page 3, this is a major exposure risk and may enable account takeover if intercepted or replayed.
 
 4. Missing Essential Security Headers
 
-As analysed on page 3-4, the API lacked headers such as:
+   As analysed on page 3-4, the API lacked headers such as:
 
-Content Security Policy (CSP)
-
-
-HTTP Strict Transport Security (HSTS)
+   Content Security Policy (CSP)
 
 
-X-Frame-Options
+   HTTP Strict Transport Security (HSTS)
 
 
-X-Content-Type-Options
+   X-Frame-Options
 
 
-Without these, the application is vulnerable to:
-XSS attacks
+   X-Content-Type-Options
 
 
-Clickjacking
+   Without these, the application is vulnerable to:
+   XSS attacks
 
 
-MITM downgrade attacks
+   Clickjacking
 
 
-Token leakage
+   MITM downgrade attacks
+
+
+   Token leakage
 
 
 
 5. Username Enumeration
    
-The system returned different messages for invalid usernames vs wrong passwords (page 5).
- Although the specific test passed, the behaviour could still aid attackers.
+   The system returned different messages for invalid usernames vs wrong passwords (page 5).
+   Although the specific test passed, the behaviour could still aid attackers.
 
 6. No Rate Limiting - Brute Force Exposure
    
-As demonstrated with Burp Suite screenshots on pages 6-7, the login endpoint allowed unlimited attempts.
- Burp Intruder successfully revealed correct characters based on:
+   As demonstrated with Burp Suite screenshots on pages 6-7, the login endpoint allowed unlimited attempts.
+   Burp Intruder successfully revealed correct characters based on:
 
-Response size changes
-
-
-Status code variations
+   Response size changes
 
 
-This makes brute-force attacks practical.
+   Status code variations
+
+
+   This makes brute-force attacks practical.
 
 🛠️ Tools Used
 
-Postman
+  Postman
 
 
-Burp Suite Intruder
+  Burp Suite Intruder
 
 
-Browser response inspector
+  Browser response inspector
 
 
-Manual endpoint tampering
+  Manual endpoint tampering
 
 
 
 📘 Full Documentation
 
-The complete detailed findings, screenshots, and analysis are provided in:
+  The complete detailed findings, screenshots, and analysis are provided in:
 
-📄 API Security Testing - Missing Security Headers & Token Exposure.pdf
+  📄 API Security Testing - Missing Security Headers & Token Exposure.pdf
 
 🔧 Recommendations (High-Level)
 
-Enforce POST over GET for authentication
+   Enforce POST over GET for authentication
 
 
-Remove server version disclosures
+   Remove server version disclosures
 
 
-Stop returning sensitive data in plaintext
+   Stop returning sensitive data in plaintext
 
 
-Add CSP, HSTS, and other hardening headers
+   Add CSP, HSTS, and other hardening headers
 
 
-Implement uniform error messages
+   Implement uniform error messages
 
 
-Add rate limiting & lockout policies
+   Add rate limiting & lockout policies
 
 
-Implement monitoring for suspicious login patterns
+   Implement monitoring for suspicious login patterns
 
 
 
