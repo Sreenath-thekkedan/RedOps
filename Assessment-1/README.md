@@ -36,7 +36,7 @@ No backend code or infrastructure testing was performed.
 
 ⚠️ Key Findings (Summary)
 
-1. Insecure Authentication Method - Credentials in URL
+  1. Insecure Authentication Method - Credentials in URL
    
 The API accepted login credentials using a GET request, exposing username & password in the URL.
  As explained on page 1, this exposes sensitive data through:
